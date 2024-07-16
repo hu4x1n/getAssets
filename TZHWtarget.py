@@ -1,6 +1,6 @@
 # _*_ coding:utf-8 _*_
-# @Time : 2023/5/29 20:57
-# @Author: 为赋新词强说愁
+# @Time : 2023/6/3 20:57
+# @Author: zhxknb1
 
 
 import requests
@@ -10,22 +10,17 @@ import time
 header = {
     "Host": "nsiscp.jscert.cn:8078",
     "Connection": "close",
-    "Content-Length": "58",
     "sec-ch-ua": "Not?A_Brand;v=8, Chromium;v=108, Google Chrome;v=108",
-    "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6MTAwMDFcL2FwaVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTc0MDMzMDUsImV4cCI6MTcxNzQ4OTcwNSwibmJmIjoxNzE3NDAzMzA1LCJqdGkiOiJMM2V4MWFVOFBtZDhyOUhhIiwic3ViIjoiRkU0QUNGNzUzMUY5MDRDQjZGOUE1OTIzNjIyODAwMjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.GYj0XZ7-OTyePp_lwmfI1cDUw9kI6sXDOwdiYKoIxT4",
+    "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6MTAwMDFcL2FwaVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MjEwOTI3NDksImV4cCI6MTcyMTE3OTE0OSwibmJmIjoxNzIxMDkyNzQ5LCJqdGkiOiJHQ2NBU2I2TE96RHNDeTFUIiwic3ViIjoiRkU0QUNGNzUzMUY5MDRDQjZGOUE1OTIzNjIyODAwMjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.L0Bgy75j_3vWuhA9V8F9MCiVtjf6kdE9TNsRe5CEew0",
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
     "sec-ch-ua-platform": "Windows",
-    "Origin": "https://nsiscp.jscert.cn:8078",
-    "Sec-Fetch-Site": "same-origin",
-    "Sec-Fetch-Mode": "cors",
-    "Sec-Fetch-Dest": "empty",
-    "Referer": "https://nsiscp.jscert.cn:8078/",
-    "Cookie": "assetreport_session=eyJpdiI6IlNtd2l6V1d3OXFqd1VOejJLbndQNUE9PSIsInZhbHVlIjoiMnVGQ1pzQlRPNWoxZXhYSTBndTRmTk84aFJpYzhIeXdXTEg0c0hkOXJRUTQrNHFaL3piMW03TW1CME1LN2xWeWhJdjE4bGt2Vm1BVndpNUMyYkprY2FzVDdmZDZZbUl5RHBCRXRzNGd0TVdXR0xJcGJ2cG96SnQwNEQ2MXI1YXEiLCJtYWMiOiJmZTA4NjUzNGJjYjZmMDRjZWQyNDA0NzZiM2FjN2Q3ZDc5YzAxNDBjNzFmYTI1MzdhOGE5ZmUxZDNiMTMyYjhkIiwidGFnIjoiIn0%3D",
+    "Cookie": "assetreport_session=eyJpdiI6ImxkUWRHS3BpTHQwWmVXanMzL0NubUE9PSIsInZhbHVlIjoiYlJCcGlFN255NTFmN1V0clI1QmlVNlE1OTh5eHZzT3dtVE1EY0VMZm9UcS83VFk4MDYrYjlNeHJTZ09vekF5UWlaampvNG0xbUNOMWRWZnk0OTIrMHhSMEJZZENyaEgwN3BncmRZNEpsNElOenYycW5OanBUVnFlKzNkZ2x5dHAiLCJtYWMiOiJmMmQ5NDI5OGFmNTg3MTk1YjI1NDk3NzMxN2QzNTJmYTdmNzEwMTQxNTgyNTA2OGYyYTUxYWJjOTgxNzhiMTEwIiwidGFnIjoiIn0%3D",
 }
 page = 1
-url = "https://nsiscp.jscert.cn:8078/api/activity/C3462D409C57497E5F054FF9C11F4366/asset/white_list"
+url = "https://nsiscp.jscert.cn:8078/api/activity/B531B7A7A12BE88C77D94527C8CFB0EB/asset/white_list"
 
-workbook = openpyxl.load_workbook("TZHWdata.xlsx")
+# 在某个文件目录下创建一个excel文件，文件名为TZHWdata.xlsx
+workbook = openpyxl.load_workbook("/Users/zhxknb1/Desktop/TZHWdata.xlsx")
 worksheet = workbook["sheet1"]
 worksheet["A1"] = "assetUrl"
 worksheet["B1"] = "realIp"
@@ -38,7 +33,7 @@ worksheet["H1"] = "submitRestrict"
 worksheet["I1"] = "riskTypeId"
 worksheet["J1"] = "riskTypeName"
 row = 2
-for n in range(1, 280):
+for n in range(1, 30):
     postdata = {
         "page": n,
         "pageSize": "50",
@@ -77,6 +72,7 @@ for n in range(1, 280):
         time.sleep(0.1)
 
     print(f"第{n}页爬取完成")
-    workbook.save("TZHWdata.xlsx")
+    # 修改保存路径
+    workbook.save("/Users/zhxknb1/Desktop/TZHWdata.xlsx")
 
 workbook.close()
